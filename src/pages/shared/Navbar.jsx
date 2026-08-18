@@ -1,13 +1,27 @@
 import React, { useContext } from 'react';
 import { Link } from "react-router-dom";
 import AuthContext from '../../context/AuthContext/AuthContext';
+import logo from "../../assets/job-logo.png";
+import { NavLink } from 'react-router-dom';
 const Navbar = () => {
 
-  const {user} = useContext(AuthContext)
+  const {user,signOutUser} = useContext(AuthContext);
+  const handleSignOut =() =>{
+    signOutUser()
+    .then(() =>{
+      console.log('successfully sign out')
+    })
+    .catch(error =>{
+      console.log('failed to sign out')
+    })
+  }
     const links = <>
-     <li><a>Item 1</a></li>
+     <li><NavLink to ="/">Home</NavLink></li>
+     <li><NavLink to ="/">Home</NavLink></li>
+     <li><NavLink to ="/">Home</NavLink></li>
+    
         
-        <li><a>Item 3</a></li>
+       
     </>
     return (
         
@@ -34,7 +48,10 @@ const Navbar = () => {
         {links}
       </ul>
     </div>
-    <a className="btn btn-ghost text-xl">daisyUI</a>
+    <a className="btn btn-ghost text-xl">
+      <img className='w-12' src={logo} alt="" />
+      <h3 className='text-3xl'>Job Portal</h3>
+      </a>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
@@ -44,7 +61,7 @@ const Navbar = () => {
   <div className="navbar-end">
     {
       user ? <>
-      <button className='btn'>Log Out</button>
+      <button onClick={handleSignOut} className='btn'>Log Out</button>
       </> : <>
        <Link to="/register">Register</Link>
 
