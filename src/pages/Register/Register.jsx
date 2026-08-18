@@ -1,6 +1,4 @@
-// import Lottie  from "lottie-react";
-// import React from 'react';
-// import registerLottieData from '../../assets/lottie/register.json';
+
 import React, { useContext } from "react";
 import LottieModule from "lottie-react";
 import registerLottieData from "../../assets/lottie/register.json";

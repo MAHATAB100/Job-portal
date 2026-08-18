@@ -1,59 +1,75 @@
-// import React, { useState } from 'react';
-// import AuthContext from './AuthContext';
-// import { createUserWithEmailAndPassword } from "firebase/auth";
-// import { auth } from '../../firebase/firebase.init';
 
-// const AuthProvider = ({children}) => {
-//   const [user,setUser] = useState(null);
-//   const [loading, setLoading] = useState(true)
-
-//   const createUser =(email,password) =>{
-//     setLoading(true);
-//     return createUserWithEmailAndPassword(auth,email,password);
-//   }
-//     const authInfo = {
-//       user,
-//         loading,
-//         createUser
-//     }
-//     return (
-//         <AuthContext.Provider value={authInfo}>
-//             {children}
-//         </AuthContext.Provider>
-//     );
-// };
-
-// export default AuthProvider;
 import React, { useEffect, useState } from 'react';
 import AuthContext from './AuthContext';
-import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged
+} from "firebase/auth";
+
 import auth from '../../firebase/firebase.init';
 
+
 const AuthProvider = ({ children }) => {
+
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+
+  // Register
   const createUser = (email, password) => {
     setLoading(true);
-    return createUserWithEmailAndPassword(auth, email, password);
-  }
-  useEffect(() =>{
-    const unsubscribe = onAuthStateChanged(auth,currentUser =>{
+
+    return createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+  };
+
+
+  // Sign In
+  const signInUser = (email, password) => {
+    setLoading(true);
+
+    return signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+  };
+
+
+ 
+  useEffect(() => {
+
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      currentUser => {
+
         setUser(currentUser);
 
         console.log('state captured', currentUser);
-        setLoading(false)
-    })
-    return () =>{
-        unsubscribe();
-    }
-  },[])
+
+        setLoading(false);
+      }
+    );
+
+    return () => {
+      unsubscribe();
+    };
+
+  }, []);
+
 
   const authInfo = {
     user,
     loading,
-    createUser
+    createUser,
+    signInUser
   };
+
 
   return (
     <AuthContext.Provider value={authInfo}>
@@ -61,5 +77,6 @@ const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
 
 export default AuthProvider;
