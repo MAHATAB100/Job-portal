@@ -1,9 +1,10 @@
 import React from 'react';
+import Bannner from './Bannner';
 
 const Home = () => {
     return (
-        <div className='max-w-7xl mx-auto'>
-            <h2>This is home</h2>
+        <div>
+            <Bannner></Bannner>
         </div>
     );
 };

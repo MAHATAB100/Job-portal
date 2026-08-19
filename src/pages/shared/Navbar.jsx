@@ -58,7 +58,7 @@ const Navbar = () => {
      {links}
     </ul>
   </div>
-  <div className="navbar-end">
+  <div className="navbar-end gap-3">
     {
       user ? <>
       <button onClick={handleSignOut} className='btn'>Log Out</button>
@@ -66,7 +66,7 @@ const Navbar = () => {
        <Link to="/register">Register</Link>
 
     <Link to ="/signIn">
-    <button className='btn'>Sign In</button>
+    <button className=' bg-blue-600 text-white  btn'>Sign In</button>
 
     </Link>
       </>
