@@ -1,17 +1,4 @@
-// import React from 'react';
-// import { useLoaderData } from 'react-router-dom';
 
-// const JobDetails = () => {
-//     const job = useLoaderData();
-    
-//     return (
-//         <div>
-//             <h2>job details</h2>
-//         </div>
-//     );
-// };
-
-// export default JobDetails;
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 
@@ -450,22 +437,21 @@ const JobDetails = () => {
                             </div>
 
 
-                           <div>
-    <label className="block font-semibold mb-2">
-        Upload Resume
-    </label>
+                            <div>
 
-    <input
-        type="file"
-        accept=".pdf"
-        className="file-input file-input-bordered w-full"
-        required
-    />
+                                <label className="block font-semibold mb-2">
+                                    Resume Link
+                                </label>
 
-    <p className="text-xs text-gray-400 mt-2">
-        Only PDF files are accepted. Maximum size: 5MB.
-    </p>
-</div>
+                                <input
+                                    type="url"
+                                    placeholder="https://your-resume-link.com"
+                                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                                    required
+                                />
+
+                            </div>
+
 
                             <div>
 
